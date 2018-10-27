@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Car price prediction</title>
+      <!-- Custom styles for this template -->
+      <link  rel="stylesheet" href="{{ url_for('static', filename='css/logo-nav.css') }}">
+
+    <!-- Bootstrap core CSS -->
+    <link  rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+
+  </head>
+  <body>
+
+    <!-- Navigation -->
+   
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1 class="mt-5">Car Price Prediction</h1>
+        <p>This model predicts the car price using gradient boosting regression given the year, mileage, fuel type, fiscal power, and brand.</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- The web form goes here -->
+                <form action="/" method="post" id = "price_predict">
+                   <div>
+                     <label for="name">Please enter mileage (0-500000): </label>
+                     <input type="text" id="mileage" name = "mileage">
+                   </div>
+                   <div>
+                     <label for="name">Please enter year of model: </label>
+                     <input type="text" id="year_model" name="year_model">
+                   </div>
+                   <div>
+                      <label for="name">Please enter fiscal power (4-48): </label>
+                      <input type="text" id="fiscal_power" name="fiscal_power">
+                  </div>
+                  <div>
+                      <label for="name">Please choose brand:</label>
+                      <select class="selection-2" id="mark" name="mark">
+                          <option value="Renault">Renault </option>
+                          <option value="Peugeot">Peugeot</option>
+                          <option value="Volkswagen">Volkswagen</option>
+                          <option value="BMW">BMW </option>
+                          <option value="Fiat">Fiat</option>
+                          <option value = "Porsch">Porsch</option>
+                          <option value = "Audi">Audi</option>
+                          <option value = "Jeep">Jeep</option>
+                          <option value = "Hyundai"> Hyundai</option>
+                          <option value = "Nissan">Nissan</option>
+                          <option value = "Chevrolet">Chevrolet</option>
+                      </select>
+                 </div>
+                 <div>
+                      <label for="name">please choose fuel type: </label>
+                      <select class="selection-2" id="fuel_type" name="fuel_type">
+                          <option value="Diesel">Diesel </option>
+                          <option value="Ess">Essence </option>
+                          <option value="Electriq">Electrique</option>
+                      </select>
+                 </div>
+              </form>
+              <button class="btn" type="submit" form="price_predict" value="Submit">Predict</button>
+          </div>
+          <div class="col-lg-6">
+                <!-- Result presentation goes here -->
+                {% if data.prediction %}
+                    <h1>{{data.prediction}}</h1>
+                    <h5>Mileage: {{data.form.mileage}}</h5>
+                    <h5>Year of model: {{data.form.year_model}}</h5>
+                    <h5>Brand: {{data.form.mark}}</h5>
+                    <h5>Fuel type: {{data.form.fuel_type}}</h5>
+                    <h5>Fiscal power: {{data.form.fiscal_power}}</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/popper/popper.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>
